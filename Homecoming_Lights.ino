@@ -77,7 +77,6 @@ void Sequence3() {
   SetColor(255,0,0);
   
   for(int i = 0; i < repeat; i++) {
-  
 
     //Sparkle to green
     SparkleColorChange(pulse, 255, 30, 0);
@@ -394,7 +393,6 @@ void ColorClimbDown(int pulse, int red, int green, int blue) {
 
 void SparkleColorChange(int pulse, int red, int green, int blue) {
 
-
   //sparkle
   for (int i = 0; i <= NUM_LEDS + 1; i++) {
     lights[i] = i;
@@ -415,6 +413,7 @@ void SparkleColorChange(int pulse, int red, int green, int blue) {
 
     int place = lights[i];
     Serial.println(place);
+    leds[0] = CRGB(0,0,0);
     leds[place] = CRGB(green, red, blue);
     delay(pulse);
     FastLED.show();
