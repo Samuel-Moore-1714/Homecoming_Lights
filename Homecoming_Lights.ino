@@ -147,20 +147,21 @@ void Sequence6() {
 //FIXME: Colors are off at the end
 void Sequence7() {
 
-  int wait1 = 1000;
+  int wait = 1000;
+  int repeat = 20;
 
-  for(int i1 = 0; i1 <= 10; i1++) {
+  for(int i = 0; i <= repeat; i++) {
 
     MixedLights2(255,0,0, 255,250,0, 0,255,0, 255,50,0, 0,0,255);
-    delay(wait1);
+    delay(wait);
     MixedLights2(0,0,255, 255,0,0, 255,250,0, 0,255,0, 255,50,0);
-    delay(wait1);
+    delay(wait);
     MixedLights2(255,50,0, 0,0,255, 255,0,0, 255,250,0, 0,255,0);
-    delay(wait1);
+    delay(wait);
     MixedLights2(0,255,0, 255,50,0, 0,0,255, 255,0,0, 255,250,0);
-    delay(wait1);
+    delay(wait);
     MixedLights2(255,250,0, 0,255,0, 255,50,0, 0,0,255, 255,0,0);
-    delay(wait1);
+    delay(wait);
 
   }
 
@@ -168,7 +169,7 @@ void Sequence7() {
 
 void Sequence8() {
 
-  int repeat = 20;
+  int repeat = 5;
 
   for(int i = 0; i <= repeat; i++) {
     HomecomingBrightnessFade();
