@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
 #define LED_PIN     7
-#define NUM_LEDS    500
+#define NUM_LEDS    522
 
 int lights[NUM_LEDS + 1];
 
@@ -168,7 +168,9 @@ void Sequence7() {
 
 void Sequence8() {
 
-  for(int i = 0; i <= 5; i++) {
+  int repeat = 20;
+
+  for(int i = 0; i <= repeat; i++) {
     HomecomingBrightnessFade();
   }
 
