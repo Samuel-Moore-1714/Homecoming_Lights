@@ -1,18 +1,16 @@
-// Libraries
 #include <FastLED.h>
 
 #define LED_PIN     7
-#define NUM_LEDS    522
+#define NUM_LEDS    100
+
+int lights[NUM_LEDS + 1];
 
 int colorSelect = 0;
 
-// define LEDs and store in array
-int lights[NUM_LEDS + 1];
 CRGB leds[NUM_LEDS];
 
 void setup() {
 
-  // Serial and LED setup
   Serial.begin(9600);
   FastLED.addLeds<WS2811, LED_PIN, GRB>(leds, NUM_LEDS);
 
@@ -21,170 +19,56 @@ void setup() {
 
 void loop() {
   
-  SetColor(255,255,0);
+  Sequence1();
+  Sequence2();
+  Sequence3();
+  Sequence4();
 
 }
 
-// Climb three colors up
 void Sequence1() {
 
-  int wait = 2500;
-  int pulse = 10;
-  int repeat = 2;
+  int wait = 5000;
+  int pulse = 25;
+  int repeat = 3;
 
-  SetColor(255, 0, 0);
-
-  for (int i = 0; i < repeat; i++) {
-    ColorClimbUp(pulse, 255, 30, 0);
+  for (int i = repeat; i >= repeat; i++) {
+    SetColor(255, 0, 0);
     delay(wait);
-    ColorClimbUp(pulse, 255, 110, 0);
+    ColorClimbUp(pulse, 255,255,0);
     delay(wait);
-    ColorClimbUp(pulse, 255, 0, 0);
-    delay(wait);
+    ColorClimbUp(pulse, 255,0,0);
   }
 
 }
 
-// Switch colors
 void Sequence2() {
 
-  int pulse = 2500;
+  int wait = 5000;
+  int pulse = 25;
+  int repeat = 10;
 
-  SetColor(255, 0, 0);
-  delay(pulse);
-  SetColor(0, 255, 0);
-  delay(pulse);
-  SetColor(255, 255, 255);
-  delay(pulse);
-  SetColor(255, 0, 0);
-  delay(pulse);
-  SetColor(0, 255, 0);
-  delay(pulse);
-  SetColor(255, 255, 255);
-  delay(pulse);
-  SetColor(255, 0, 0);
-  delay(pulse);
+  for (int i = repeat; i >= repeat; i++) {
+      
+    SetColor(255,0,0);
 
-}
-
-// sparkle
-void Sequence3() {
-
-  int pulse = 10;
-  int wait = 2500;
-  int repeat = 2;
-
-  SetColor(255,0,0);
-  
-  for(int i = 0; i < repeat; i++) {
-
-    //Sparkle to green
-    SparkleColorChange(pulse, 255, 30, 0);
-    delay(wait);
-
-    //Sparkle to white
-    SparkleColorChange(pulse, 255, 110, 0);
+    //Sparkle to yellow
+    SparkleColorChange(pulse, 255, 255, 0);
     delay(wait);
 
     //Sparkle to red
     SparkleColorChange(pulse, 255, 0, 0);
     delay(wait);
-  }
 
-
-}
-
-// three colors
-void Sequence4() {
-
-  int wait = 1000;
-  int repeat = 5;
-
-  for(int i = 0; i <= repeat; i++) {
-    SetThreeColors(255, 0, 0, 255, 30, 0, 255, 110, 0);
-    delay(wait);
-    SetThreeColors(255, 110, 0, 255, 0, 0, 255, 30, 0);
-    delay(wait);
-    SetThreeColors(255, 30, 0, 255, 110, 0, 255, 0, 0);
-    delay(wait);
-  }
-
-}
-
-// Fade
-void Sequence5() {
-
-  int repeat = 3;
-
-  for(int i = 0; i < repeat; i++) {
-
-    HomecomingFade();
   }
 }
 
-// Mixed
-void Sequence6() {
+void Sequence3() {
 
-  int wait = 500;
-  int repeat = 5;
-
-  for(int i = 0; i <= repeat; i++) {
-
-    MixedLights1(255,0,0, 255,30,0, 255,110,0);
-    delay(wait);
-    MixedLights1(255,110,0, 255,0,0, 255,30,0);
-    delay(wait);
-    MixedLights1(255,30,0, 255,110,0, 255,0,0);
-    delay(wait);
-
-  }
-
-}
-
-//red = 255,0,0
-//yellow = 255, 150, 0
-//green = 0,255,0
-//orange = 255,50,0
-//blue = 0,0,255
-
-//FIXME: Colors are off at the end
-void Sequence7() {
-
-  int wait = 1000;
-  int repeat = 20;
-
-  for(int i = 0; i <= repeat; i++) {
-
-    MixedLights2(255,0,0, 255,250,0, 0,255,0, 255,50,0, 0,0,255);
-    delay(wait);
-    MixedLights2(0,0,255, 255,0,0, 255,250,0, 0,255,0, 255,50,0);
-    delay(wait);
-    MixedLights2(255,50,0, 0,0,255, 255,0,0, 255,250,0, 0,255,0);
-    delay(wait);
-    MixedLights2(0,255,0, 255,50,0, 0,0,255, 255,0,0, 255,250,0);
-    delay(wait);
-    MixedLights2(255,250,0, 0,255,0, 255,50,0, 0,0,255, 255,0,0);
-    delay(wait);
-
-  }
-
-}
-
-void Sequence8() {
-
-  int repeat = 5;
-
-  for(int i = 0; i <= repeat; i++) {
-    HomecomingBrightnessFade();
-  }
-
-}
-
-//Brightness fade
-void HomecomingBrightnessFade() {
+  //TODO: add yellow
 
   int wait = 100;
-  int repeat = 3;
+  int repeat = 5;
 
   for(int i = 0; i <= repeat; i++) {
 
@@ -200,33 +84,18 @@ void HomecomingBrightnessFade() {
     delay(wait);
 
   }
+}
+
+void Sequence4() {
+
+  int wait = 250;
+  int repeat = 10;
 
   for(int i = 0; i <= repeat; i++) {
 
-    MixedLights2(50,10,0, 100,15,0, 150,20,0, 200,25,0, 250,30,0);
+    MixedLights3(255,0,0, 225,255,0);
     delay(wait);
-    MixedLights2(250,30,0, 50,10,0, 100,15,0, 150,20,0, 200,25,0);
-    delay(wait);
-    MixedLights2(200,25,0, 250,30,0, 50,10,0, 100,15,0, 150,20,0);
-    delay(wait);
-    MixedLights2(150,20,0, 200,25,0, 250,30,0, 50,10,0, 100,15,0);
-    delay(wait);
-    MixedLights2(100,15,0, 150,20,0, 200,25,0, 250,30,0, 50,10,0);
-    delay(wait);
-
-  }
-
-  for(int i = 0; i <= repeat; i++) {
-
-    MixedLights2(50,22,0, 100,44,0, 150,66,0, 200,88,0, 250,110,0);
-    delay(wait);
-    MixedLights2(250,110,0, 50,22,0, 100,44,0, 150,66,0, 200,88,0);
-    delay(wait);
-    MixedLights2(200,88,0, 250,110,0, 50,22,0, 100,44,0, 150,66,0);
-    delay(wait);
-    MixedLights2(150,66,0, 200,88,0, 250,110,0, 50,22,0, 100,44,0);
-    delay(wait);
-    MixedLights2(100,44,0, 150,66,0, 200,88,0, 250,110,0, 50,22,0);
+    MixedLights3(255,0,0, 255,255,0);
     delay(wait);
 
   }
@@ -258,58 +127,71 @@ void MixedLights1(int red1, int green1, int blue1, int red2, int green2, int blu
   FastLED.show();
 }
 
-void HomecomingFade() {
+void MixedLights3(int red1, int green1, int blue1, int red2, int green2, int blue2) {
 
-  int red = 255;
+  for (int place = 0; place <= NUM_LEDS; place = place+3) {
+
+    leds[place] = CRGB(green1, red1, blue1);
+    leds[place+1] = CRGB(green2, red2, blue2);
+
+  }
+  FastLED.show();
+}
+
+void ChristmasFade() {
+
   int green = 0;
+  int red = 0;
   int blue = 0;
 
-  int pulse = 10;
+  int pulse = 2.5;
+
   int wait = 1000;
 
   SetColor(255, 0, 0);
   delay(wait);
 
-  for (int i = 0; i < 30; i++) {
+  for (int i = 0; i < 255; i++) {
 
+    red--;
     green++;
     SetColor(red, green, blue);
     delay(pulse);
 
   }
 
-  SetColor(255, 30, 0);
+  SetColor(0, 255, 0);
   delay(wait);
 
-  
-  red = 255;
-  green = 30;
+  red = 0;
   blue = 0;
+  green = 255;
 
-  for (int i = 0; i < 80; i++) {
+  for (int i = 0; i < 255; i++) {
 
-    green++;
+    red++;
+    blue++;
     SetColor(red, green, blue);
     delay(pulse);
 
   }
 
-  SetColor(255, 110, 0);
+  SetColor(255, 255, 255);
   delay(wait);
 
   red = 255;
-  green = 110;
-  blue = 0;
+  green = 255;
+  blue = 255;
 
-  for (int i = 0; i < 110; i++) {
+  for (int i = 0; i < 255; i++) {
 
     green--;
+    blue--;
     SetColor(red, green, blue);
     delay(pulse);
 
   }
 
-  SetColor(255, 0, 0);
   delay(wait);
   
 }
@@ -400,6 +282,7 @@ void ColorClimbDown(int pulse, int red, int green, int blue) {
 
 void SparkleColorChange(int pulse, int red, int green, int blue) {
 
+
   //sparkle
   for (int i = 0; i <= NUM_LEDS + 1; i++) {
     lights[i] = i;
@@ -420,7 +303,6 @@ void SparkleColorChange(int pulse, int red, int green, int blue) {
 
     int place = lights[i];
     Serial.println(place);
-    leds[0] = CRGB(0,0,0);
     leds[place] = CRGB(green, red, blue);
     delay(pulse);
     FastLED.show();
