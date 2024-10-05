@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
 #define LED_PIN     7
-#define NUM_LEDS    500
+#define NUM_LEDS    400
 
 int lights[NUM_LEDS + 1];
 
@@ -20,10 +20,9 @@ void setup() {
 void loop() {
 
   Sequence5();
-  Sequence3();
   Sequence1();
+  Sequence3();
   Sequence2();
-  //Sequence5();
 
 }
 
@@ -36,7 +35,7 @@ void Sequence1() {
   for (int i = 0; i < repeat; i++) {
     SetColor(255, 0, 0);
     delay(wait);
-    ColorClimbUp(pulse, 255,255,0);
+    ColorClimbUp(pulse, 255,100,0);
     delay(wait);
     ColorClimbDown(pulse, 255,0,0);
   }
@@ -46,7 +45,7 @@ void Sequence1() {
 void Sequence2() {
 
   int wait = 2500;
-  int pulse = 2.5;
+  int pulse = 1.0;
   int repeat = 2;
 
   for (int i = 0; i < repeat; i++) {
@@ -54,7 +53,7 @@ void Sequence2() {
     SetColor(255,0,0);
 
     //Sparkle to yellow
-    SparkleColorChange(pulse, 255, 255, 0);
+    SparkleColorChange(pulse, 255, 100, 0);
     delay(wait);
 
     //Sparkle to red
@@ -92,15 +91,15 @@ void Sequence3() {
 
     for(int yellowLoopVar = 0; yellowLoopVar < repeatYellow; yellowLoopVar++) {
 
-      MixedLights2(50,50,0, 100,100,0, 150,150,0, 200,200,0, 250,250,0);
+      MixedLights2(50,20,0, 100,40,0, 150,60,0, 200,80,0, 250,100,0);
       delay(wait);
-      MixedLights2(250,250,0, 50,50,0, 100,100,0, 150,150,0, 200,200,0);
+      MixedLights2(250,100,0, 50,20,0, 100,40,0, 150,60,0, 200,80,0);
       delay(wait);
-      MixedLights2(200,200,0, 250,250,0, 50,50,0, 100,100,0, 150,150,0);
+      MixedLights2(200,80,0, 250,100,0, 50,20,0, 100,40,0, 150,60,0);
       delay(wait);
-      MixedLights2(150,150,0, 200,200,0, 250,250,0, 50,50,0, 100,100,0);
+      MixedLights2(150,60,0, 200,80,0, 250,100,0, 50,20,0, 100,40,0);
       delay(wait);
-      MixedLights2(100,100,0, 150,150,0, 200,200,0, 250,250,0, 50,50,0);
+      MixedLights2(100,40,0, 150,60,0, 200,80,0, 250,100,0, 50,20,0);
       delay(wait);
 
     }
@@ -114,9 +113,9 @@ void Sequence4() {
 
   for(int i = 0; i < repeat; i++) {
 
-    MixedLights3(255,0,0, 225,255,0);
+    MixedLights3(255,0,0, 225,100,0);
     delay(wait);
-    MixedLights3(255,255,0, 255,0,0);
+    MixedLights3(255,100,0, 255,0,0);
     delay(wait);
 
   }
@@ -139,7 +138,7 @@ void Sequence5() {
       if (currentPosition < barWidth) {
         leds[j] = CRGB(0,255,0); // Set red
       } else {
-        leds[j] = CRGB(255,255,0); // Set yellow
+        leds[j] = CRGB(100,255,0); // Set yellow
       }
     }
 
